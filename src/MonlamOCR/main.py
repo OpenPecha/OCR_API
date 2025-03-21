@@ -72,12 +72,14 @@ def get_line_data_and_page_text(line_inference, image_name):
 
 @app.post("/process/")
 async def process_file(data: dict):
-    image_url = data['image_url']
-    image_name = image_url.split("/")[-1]
+    # image_url = data['image_url']
+    # image_name = image_url.split("/")[-1]
+    image_path = data['image_path']
+    image_name = image_path.split("/")[-1]
     OCR_model_name = data['OCR_model']
     ocr_pipeline = initialize_models(OCR_model_name)
     try:
-        image_path = download_image(image_url)
+        # image_path = download_image(image_url)
 
         image = cv2.imread(image_path)
         if image is None:
